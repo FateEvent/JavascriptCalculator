@@ -1,6 +1,6 @@
 let screenEl = document.getElementById("screen")
 let outputEl = document.createElement("output")
-reset()
+clear()
 screenEl.appendChild(outputEl)
 let store = []
 
@@ -11,8 +11,8 @@ numEl.forEach(item => {
 		if (isOperand(isOp))
 		{
 			store.push(isOp)
-			// recordOp()
-			reset()
+			recordOp()
+			clear()
 		}
 		outputEl.innerText += item.innerText
 		console.log(outputEl.innerText)
@@ -34,8 +34,8 @@ opEl.forEach(item => {
 		if (!isOperand(isNum))
 		{
 			store.push(isNum)
-			// recordOp()
-			reset()
+			recordOp()
+			clear()
 		}
 		outputEl.innerText = item.innerText
 		console.log(outputEl.innerText)
@@ -43,35 +43,32 @@ opEl.forEach(item => {
 	})
 })
 
-// function recordOp() {
-// 	if (store.length === 1) {
-// 		if (Number(store[0]) === 'Nan') {
-// 			store.pop()
-// 			reset()
-// 		}
-// 	} else if (store.length === 2) {
-// 		if (Number(store[1]) !== 'Nan') {
-// 			store.pop()
-// 			reset()
-// 		}
-// 	} else if (store.length === 3) {
-// 		if (Number(store[2]) === 'Nan') {
-// 			store.pop()
-// 			reset()
-// 		} else {
-// 			let str = `${Number(store[0])} ${store[1]} ${Number(store[2])}`
-// 			let result = eval(str)
-// 			store = []
-// 			console.log(result)
-// 		}
-// 	}
-// }
+function recordOp() {
+	if (store.length === 1) {
+		if (isOperand(store[0])) {
+			store.pop()
+			clear()
+		}
+	} else if (store.length === 2) {
+		if (!isOperand(store[1])) {
+			store.pop()
+			clear()
+		}
+	} else if (store.length === 3) {
+		if (isOperand(store[2])) {
+			store.pop()
+			clear()
+		}
+	}
+}
 
 let equalEl = document.getElementById("equal")
 equalEl.addEventListener("click", function() {
 	let isNum = outputEl.innerText
-	if (!isOperand(isNum))
+	if (!isOperand(isNum)) {
 		store.push(isNum)
+		recordOp()
+	}
 	console.log(store)
 
 	let str = `${Number(store[0])} ${store[1]} ${Number(store[2])}`
@@ -80,12 +77,17 @@ equalEl.addEventListener("click", function() {
 	store = []
 })
 
-function reset() {
+function clear() {
 	outputEl.innerText = ""
 }
 
 let resetEl = document.getElementById("all-clear")
 resetEl.addEventListener("click", function() {
-	reset()
+	clear()
 	store = []
+})
+
+let clearEl = document.getElementById("clear")
+clearEl.addEventListener("click", function() {
+	clear()
 })
