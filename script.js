@@ -2,21 +2,21 @@ let screenEl = document.getElementById("screen")
 let outputEl = document.createElement("output")
 clear()
 screenEl.appendChild(outputEl)
-let store = []
+let records = []
 
 numEl = document.querySelectorAll(".number")
 numEl.forEach(item => {
 	item.addEventListener("click", function() {
 		let isOp = outputEl.innerText
-		if (isOperand(isOp))
+		if (isOperand(isOp) && isOp != "")
 		{
-			store.push(isOp)
-			recordOp()
+			records.push(isOp)
+			checkRecords()
 			clear()
 		}
 		outputEl.innerText += item.innerText
 		console.log(outputEl.innerText)
-		console.log(store)
+		console.log(records)
 	})
 })
 
@@ -31,32 +31,32 @@ opEl = document.querySelectorAll(".op")
 opEl.forEach(item => {
 	item.addEventListener("click", function() {
 		let isNum = outputEl.innerText
-		if (!isOperand(isNum))
+		if (!isOperand(isNum) && isNum != "")
 		{
-			store.push(isNum)
-			recordOp()
+			records.push(isNum)
+			checkRecords()
 			clear()
 		}
 		outputEl.innerText = item.innerText
 		console.log(outputEl.innerText)
-		console.log(store)
+		console.log(records)
 	})
 })
 
-function recordOp() {
-	if (store.length === 1) {
-		if (isOperand(store[0])) {
-			store.pop()
+function checkRecords() {
+	if (records.length === 1) {
+		if (isOperand(records[0])) {
+			records.pop()
 			clear()
 		}
-	} else if (store.length === 2) {
-		if (!isOperand(store[1])) {
-			store.pop()
+	} else if (records.length === 2) {
+		if (!isOperand(records[1])) {
+			records.pop()
 			clear()
 		}
-	} else if (store.length === 3) {
-		if (isOperand(store[2])) {
-			store.pop()
+	} else if (records.length === 3) {
+		if (isOperand(records[2])) {
+			records.pop()
 			clear()
 		}
 	}
@@ -66,15 +66,17 @@ let equalEl = document.getElementById("equal")
 equalEl.addEventListener("click", function() {
 	let isNum = outputEl.innerText
 	if (!isOperand(isNum)) {
-		store.push(isNum)
-		recordOp()
+		records.push(isNum)
+		checkRecords()
 	}
-	console.log(store)
+	console.log(records)
 
-	let str = `${Number(store[0])} ${store[1]} ${Number(store[2])}`
-	let result = eval(str)
-	outputEl.innerText = result
-	store = []
+	if (records.length === 3) {
+		let str = `${Number(records[0])} ${records[1]} ${Number(records[2])}`
+		let result = eval(str)
+		outputEl.innerText = result
+		records = []
+	}
 })
 
 function clear() {
@@ -84,7 +86,7 @@ function clear() {
 let resetEl = document.getElementById("all-clear")
 resetEl.addEventListener("click", function() {
 	clear()
-	store = []
+	records = []
 })
 
 let clearEl = document.getElementById("clear")
