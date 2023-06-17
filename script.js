@@ -1,21 +1,19 @@
-let screenEl = document.getElementById("screen")
-let outputEl = document.createElement("output")
+let outputEl = document.getElementById("output-el")
 clear()
-screenEl.appendChild(outputEl)
 let records = []
 
 numEl = document.querySelectorAll(".number")
 numEl.forEach(item => {
 	item.addEventListener("click", function() {
-		let isOp = outputEl.innerText
+		let isOp = outputEl.value
 		if (isOperand(isOp) && isOp != "")
 		{
 			records.push(isOp)
 			checkRecords()
 			clear()
 		}
-		outputEl.innerText += item.innerText
-		console.log(outputEl.innerText)
+		outputEl.value += item.innerText
+		console.log(outputEl.value)
 		console.log(records)
 	})
 })
@@ -30,15 +28,15 @@ function isOperand (operand) {
 opEl = document.querySelectorAll(".op")
 opEl.forEach(item => {
 	item.addEventListener("click", function() {
-		let isNum = outputEl.innerText
+		let isNum = outputEl.value
 		if (!isOperand(isNum) && isNum != "")
 		{
 			records.push(isNum)
 			checkRecords()
 			clear()
 		}
-		outputEl.innerText = item.innerText
-		console.log(outputEl.innerText)
+		outputEl.value = item.innerText
+		console.log(outputEl.value)
 		console.log(records)
 	})
 })
@@ -64,7 +62,7 @@ function checkRecords() {
 
 let equalEl = document.getElementById("equal")
 equalEl.addEventListener("click", function() {
-	let isNum = outputEl.innerText
+	let isNum = outputEl.value
 	if (!isOperand(isNum)) {
 		records.push(isNum)
 		checkRecords()
@@ -74,13 +72,13 @@ equalEl.addEventListener("click", function() {
 	if (records.length === 3) {
 		let str = `${Number(records[0])} ${records[1]} ${Number(records[2])}`
 		let result = eval(str)
-		outputEl.innerText = result
+		outputEl.value = result
 		records = []
 	}
 })
 
 function clear() {
-	outputEl.innerText = ""
+	outputEl.value = ""
 }
 
 let resetEl = document.getElementById("all-clear")

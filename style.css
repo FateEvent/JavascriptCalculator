@@ -1,0 +1,14 @@
+.keys {
+    border: 1px solid;
+    width: 50vh;
+}
+
+button {
+    width: 12vh;
+    height: 6vh;
+    margin: 0;
+}
+
+.zero {
+    width: 24vh;
+}
