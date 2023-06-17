@@ -1,15 +1,21 @@
 :root {
 	--btn-width: 12vw;
+	--btn-height: 6vh;
+}
+
+body {
+	background: url("climbing_plant.jpg");
+	background-size: cover;
 }
 
 .container {
 	display: block;
-	box-sizing: border-box;
 	align-items: center;
 	margin: auto;
 	width: fit-content;
-	border: thick ridge green;
+	border: thick ridge darkgreen;
 	margin-top: 20%;
+	box-shadow: 5px 1.5px 1.5px 2.5px rgba(95, 0, 142, 0.518);
 }
 
 .keys {
@@ -18,9 +24,11 @@
 	width: calc(var(--btn-width) * 4 + 4px * 3);
 	box-sizing: border-box;
 	height: 30vh;
+	background-color: darkgreen;
 }
 
 input {
+	box-sizing: border-box;
 	width: calc(var(--btn-width) * 4 + 4px * 3);
 	height: 5vh;
 	text-align: center;
@@ -28,18 +36,17 @@ input {
 }
 
 .row {
+	box-sizing: border-box;
 	width: calc(var(--btn-width) * 4 + 4px * 3);
 	height: 6vh;
 }
 
 button {
 	width: var(--btn-width);
-	height: 6vh;
-	padding: 2px;
+	height: var(--btn-height);
+	margin-top: 2px;
 }
 
 .zero {
-	/* between buttons we can find "spaces" calculated as 4px (of width)
-	* 16px (of height); sizes are immutable */
 	width: calc(var(--btn-width) * 2 + 4px);
 }
