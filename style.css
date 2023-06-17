@@ -1,36 +1,45 @@
+:root {
+	--btn-width: 12vw;
+}
+
 .container {
+	display: block;
+	box-sizing: border-box;
 	align-items: center;
 	margin: auto;
 	width: fit-content;
-	border: 3px solid green;
-	padding: 10px;
+	border: thick ridge green;
+	margin-top: 20%;
 }
 
 .keys {
-	align-items: center;
-	margin: auto;
-	width: fit-content;
-	border: 3px solid green;
-	padding: 10px;
+	/* between buttons we can find "spaces" calculated as 4px (of width)
+	* 16px (of height); sizes are immutable */
+	width: calc(var(--btn-width) * 4 + 4px * 3);
+	box-sizing: border-box;
+	height: 30vh;
 }
 
 input {
-	width: 52vh;
-	height: 4vh;
+	width: calc(var(--btn-width) * 4 + 4px * 3);
+	height: 5vh;
 	text-align: center;
+	background-color: #ACE1AF;
 }
 
-.keys {
-	border: 1px solid;
-	width: 50vh;
+.row {
+	width: calc(var(--btn-width) * 4 + 4px * 3);
+	height: 6vh;
 }
 
 button {
-	width: 12vh;
+	width: var(--btn-width);
 	height: 6vh;
-	margin: 0;
+	padding: 2px;
 }
 
 .zero {
-	width: 24vh;
+	/* between buttons we can find "spaces" calculated as 4px (of width)
+	* 16px (of height); sizes are immutable */
+	width: calc(var(--btn-width) * 2 + 4px);
 }
