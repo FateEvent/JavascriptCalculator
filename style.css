@@ -3,6 +3,11 @@
 	--btn-height: 6vh;
 }
 
+@font-face {
+	font-family: radioland;
+	src: url(fonts/RADIOLAND.TTF);
+  }
+
 body {
 	background: url("climbing_plant.jpg");
 	background-size: cover;
@@ -33,6 +38,8 @@ input {
 	height: 5vh;
 	text-align: center;
 	background-color: #ACE1AF;
+	font-family: radioland, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-size: 150%;
 }
 
 .row {
@@ -45,6 +52,7 @@ button {
 	width: var(--btn-width);
 	height: var(--btn-height);
 	margin-top: 2px;
+	box-shadow: 5px 1.5px 1.5px 2.5px rgba(45, 2, 66, 0.518);
 }
 
 .zero {
