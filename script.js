@@ -80,8 +80,15 @@ equalEl.addEventListener("click", function() {
 			str += `${records[i]}`
 	}
 	console.log(str)
-	let result = eval(str)
-	outputEl.value = result
+	try {
+		let result = eval(str)
+		outputEl.value = result
+	} catch (e) {
+		if (e instanceof SyntaxError) {
+			outputEl.value = "error"
+			alert(e.message);
+		}
+	}	
 	records = []
 	eq = true
 })
