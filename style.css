@@ -4,7 +4,7 @@
 }
 
 @font-face {
-	font-family: radioland;
+	font-family: Radioland;
 	src: url(fonts/RADIOLAND.TTF);
   }
 
@@ -26,7 +26,7 @@ body {
 .keys {
 	/* between buttons we can find "spaces" calculated as 4px (of width)
 	* 16px (of height); sizes are immutable */
-	width: calc(var(--btn-width) * 4 + 4px * 3);
+	/* width: calc(var(--btn-width) * 4 + 4px * 3); */
 	box-sizing: border-box;
 	height: 30vh;
 	background-color: darkgreen;
@@ -38,14 +38,15 @@ input {
 	height: 5vh;
 	text-align: center;
 	background-color: #ACE1AF;
-	font-family: radioland, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	font-family: Radioland, 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 	font-size: 150%;
 }
 
 .row {
 	box-sizing: border-box;
-	width: calc(var(--btn-width) * 4 + 4px * 3);
 	height: 6vh;
+	display: flex;
+	justify-content: space-between;
 }
 
 button {
@@ -53,6 +54,9 @@ button {
 	height: var(--btn-height);
 	margin-top: 2px;
 	box-shadow: 5px 1.5px 1.5px 2.5px rgba(45, 2, 66, 0.518);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .zero {

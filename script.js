@@ -7,6 +7,9 @@ numEl = document.querySelectorAll(".number")
 numEl.forEach(item => {
 	item.addEventListener("click", function() {
 		let isOp = outputEl.value
+		
+		if (outputEl.value === '0')
+			outputEl.value = ""
 		if (eq === true) {
 			eq = false
 			clear()
@@ -17,8 +20,8 @@ numEl.forEach(item => {
 			clear()
 		}
 		outputEl.value += item.innerText
-		console.log(outputEl.value)
 		console.log(records)
+		console.log(outputEl.value)
 	})
 })
 
@@ -40,8 +43,6 @@ opEl.forEach(item => {
 			clear()
 		}
 		outputEl.value = item.innerText
-		console.log(outputEl.value)
-		console.log(records)
 	})
 })
 
@@ -68,16 +69,14 @@ equalEl.addEventListener("click", function() {
 		records.push(isNum)
 		checkRecords()
 	}
-	console.log(records)
 
 	let str = ""
 	for (let i = 0; i < records.length; ++i) {
 		if (i % 2 == 0)
 			str += `${Number(records[i])}`
 		else
-		str += `${records[i]}`
+			str += `${records[i]}`
 	}
-	console.log(str)
 	let result = eval(str)
 	outputEl.value = result
 	records = []
@@ -101,6 +100,13 @@ clearEl.addEventListener("click", function() {
 
 let dotEl = document.getElementById("dot")
 dotEl.addEventListener("click", function() {
-	if (!outputEl.value.includes('.'))
+	if (outputEl.value === "")
+		outputEl.value = '0.'
+	else if (!outputEl.value.includes('.'))
 		outputEl.value += '.'
+})
+
+let signEl = document.getElementById("sign")
+signEl.addEventListener("click", function() {
+	outputEl.value *= -1
 })
