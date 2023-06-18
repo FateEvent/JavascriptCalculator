@@ -20,8 +20,6 @@ numEl.forEach(item => {
 			clear()
 		}
 		outputEl.value += item.innerText
-		console.log(records)
-		console.log(outputEl.value)
 	})
 })
 
