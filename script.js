@@ -7,7 +7,6 @@ numEl = document.querySelectorAll(".number")
 numEl.forEach(item => {
 	item.addEventListener("click", function() {
 		let isOp = outputEl.value
-		
 		if (outputEl.value === '0')
 			outputEl.value = ""
 		if (eq === true) {
@@ -20,6 +19,8 @@ numEl.forEach(item => {
 			clear()
 		}
 		outputEl.value += item.innerText
+		console.log(outputEl.value)
+		console.log(records)
 	})
 })
 
@@ -41,6 +42,8 @@ opEl.forEach(item => {
 			clear()
 		}
 		outputEl.value = item.innerText
+		console.log(outputEl.value)
+		console.log(records)
 	})
 })
 
@@ -52,7 +55,7 @@ function checkRecords() {
 				clear()
 			}
 		} else if (i % 2 == 1) {
-			if (!isOperand(records[1])) {
+			if (!isOperand(records[i])) {
 				records.pop()
 				clear()
 			}
@@ -67,6 +70,7 @@ equalEl.addEventListener("click", function() {
 		records.push(isNum)
 		checkRecords()
 	}
+	console.log(records)
 
 	let str = ""
 	for (let i = 0; i < records.length; ++i) {
@@ -75,6 +79,7 @@ equalEl.addEventListener("click", function() {
 		else
 			str += `${records[i]}`
 	}
+	console.log(str)
 	let result = eval(str)
 	outputEl.value = result
 	records = []
@@ -98,6 +103,18 @@ clearEl.addEventListener("click", function() {
 
 let dotEl = document.getElementById("dot")
 dotEl.addEventListener("click", function() {
+	let isOp = outputEl.value
+	if (outputEl.value === '0')
+		outputEl.value = ""
+	if (eq === true) {
+		eq = false
+		clear()
+	}
+	if (isOperand(isOp) && isOp != "") {
+		records.push(isOp)
+		checkRecords()
+		clear()
+	}
 	if (outputEl.value === "")
 		outputEl.value = '0.'
 	else if (!outputEl.value.includes('.'))
